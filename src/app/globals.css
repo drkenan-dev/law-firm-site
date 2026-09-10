@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design tokens (Tailwind v4 — CSS-first configuration)
+   Edit colors, fonts and spacing here to re-brand the site.
+   ============================================================ */
+@theme {
+  /* Brand palette */
+  --color-navy-950: #071426;
+  --color-navy-900: #0b1f3a;
+  --color-navy-800: #12305c;
+  --color-navy-700: #1c4176;
+  --color-navy-600: #285391;
+
+  --color-gold-300: #dcc391;
+  --color-gold-400: #cbaa6b;
+  --color-gold-500: #b69258;
+  --color-gold-600: #9a763d;
+  --color-gold-700: #7c5d2d;
+
+  --color-charcoal-900: #1b2130;
+  --color-charcoal-700: #2b3242;
+  --color-charcoal-500: #4b5563;
+
+  --color-cream: #faf9f6;
+  --color-paper: #f3f1ec;
+  --color-line: #e6e2d9;
+
+  /* Typography */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgb(11 31 58 / 0.06), 0 8px 24px -12px rgb(11 31 58 / 0.18);
+  --shadow-card-lg: 0 2px 4px rgb(11 31 58 / 0.06), 0 20px 44px -16px rgb(11 31 58 / 0.24);
+
+  /* Easing */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================
+   Base styles
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  @apply bg-white text-charcoal-700 font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-gold-400);
+  color: var(--color-navy-950);
+}
+
+/* Visible focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= theme(--breakpoint-sm)) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= theme(--breakpoint-lg)) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Scroll-reveal animation (driven by <Reveal> component) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s var(--ease-out-soft),
+    transform 0.7s var(--ease-out-soft);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hide scroll-chrome scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   Legacy-browser fallback (applies only to old engines)
+   Browsers without oklch() color support (Chrome/Edge < 111,
+   Firefox < 113, Safari < 15.4) cannot parse Tailwind v4's
+   color utilities and would otherwise render the whole page as
+   an unstyled wall of text. This ground-up stylesheet restores a
+   readable, site-like layout in those engines only. Modern
+   browsers (which support oklch) evaluate this block as false
+   and ignore it entirely.
+   ============================================================ */
+@supports not (color: oklch(50% 0 0)) {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    color: #2b3242;
+    background: #faf9f6;
+    font-family: Arial, "Helvetica Neue", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border: 0;
+    vertical-align: middle;
+  }
+
+  a {
+    color: #9a763d;
+    text-underline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0.5em 0 0.35em;
+    color: #0b1f3a;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.25;
+  }
+
+  .container-site {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding: 1rem;
+  }
+
+  /* Stack grid/multi-column layouts into readable blocks */
+  .grid {
+    display: block;
+  }
+  .grid > * {
+    margin-block: 0.75rem;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  section,
+  article,
+  header,
+  footer {
+    padding-block: 1.25rem;
+  }
+
+  .fixed {
+    position: relative;
+  }
+
+  /* Keep the primary nav readable */
+  header nav ul li {
+    display: inline-block;
+    margin-right: 1rem;
+    list-style: none;
+  }
+}

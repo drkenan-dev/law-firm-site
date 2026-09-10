@@ -1,0 +1,35 @@
+{
+  "name": "law-firm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "predev": "npm run sync:content",
+    "build": "next build",
+    "prebuild": "npm run sync:content",
+    "start": "next start",
+    "lint": "eslint",
+    "sync:content": "tsx scripts/sync-content.ts",
+    "generate:images": "node scripts/generate-placeholders.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^1.43.0",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.13",
+    "typescript": "^5"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

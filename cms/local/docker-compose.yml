@@ -1,0 +1,62 @@
+# Local WordPress for testing the Crestline Headless integration.
+#
+#   docker compose -f cms/local/docker-compose.yml up -d
+#   docker compose -f cms/local/docker-compose.yml run --rm wpcli wp core install ...   (see test-workflow.md)
+#
+# WordPress: http://localhost:8080  (admin / admin@example.com / adminpass)
+# REST content: http://localhost:8080/wp-json/crl/v1/all
+services:
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp
+      MYSQL_PASSWORD: wp
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: "1"
+    volumes:
+      - wp_data:/var/www/html
+      - ./../wordpress/crl-headless:/var/www/html/wp-content/plugins/crl-headless:ro
+      - ./:/local:ro
+
+  wpcli:
+    image: wordpress:cli-php8.3
+    user: "33:33"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp_data:/var/www/html
+      - ./../wordpress/crl-headless:/var/www/html/wp-content/plugins/crl-headless:ro
+      - ./:/local:ro
+
+volumes:
+  wp_data:
+  db_data:

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0" stop-color="#0B1F3A"/>
+    <stop offset="1" stop-color="#12305C"/>
+  </linearGradient>
+  <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#B69258" stop-opacity="0.5"/>
+    <stop offset="1" stop-color="#DCC391" stop-opacity="0.9"/>
+  </linearGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<g>
+  <rect x="740" y="134" width="460" height="26" fill="#071426" opacity="0.85"/>
+  <path d="M 706 134 L 970 68 L 1234 134 Z" fill="#071426" opacity="0.85"/>
+  <rect x="714" y="600" width="512" height="30" fill="#071426" opacity="0.85"/>
+  <rect x="784.0833333333334" y="160" width="39.1" height="440" fill="#071426" opacity="0.62"/>
+             <rect x="791.1213333333334" y="160" width="6.256" height="440" fill="#B69258" opacity="0.5"/><rect x="867.2666666666667" y="160" width="39.1" height="440" fill="#071426" opacity="0.62"/>
+             <rect x="874.3046666666667" y="160" width="6.256" height="440" fill="#B69258" opacity="0.5"/><rect x="950.45" y="160" width="39.1" height="440" fill="#071426" opacity="0.62"/>
+             <rect x="957.488" y="160" width="6.256" height="440" fill="#B69258" opacity="0.5"/><rect x="1033.6333333333334" y="160" width="39.1" height="440" fill="#071426" opacity="0.62"/>
+             <rect x="1040.6713333333335" y="160" width="6.256" height="440" fill="#B69258" opacity="0.5"/><rect x="1116.8166666666666" y="160" width="39.1" height="440" fill="#071426" opacity="0.62"/>
+             <rect x="1123.8546666666666" y="160" width="6.256" height="440" fill="#B69258" opacity="0.5"/>
+  <line x1="740" y1="200" x2="1200" y2="200" stroke="#B69258" stroke-opacity="0.5"/>
+</g>
+<g transform="translate(360 300) scale(0.85)" stroke="#DCC391" fill="none" stroke-width="6" stroke-linecap="round">
+  <circle cy="-150" r="9" fill="#DCC391" stroke="none"/>
+  <path d="M 0 -145 V 40"/>
+  <path d="M -185 40 H 185"/>
+  <path d="M -185 40 L -185 50 C -185 122 -125 170 -22 172"/>
+  <path d="M 185 40 L 185 50 C 185 122 125 170 22 172"/>
+  <path d="M -138 55 L -138 60 C -138 112 -95 148 -10 150"/>
+  <path d="M 138 55 L 138 60 C 138 112 95 148 10 150"/>
+  <path d="M 0 40 V 52"/>
+</g>
+<text x="70" y="520" font-family="Georgia, 'Times New Roman', serif" font-size="66" font-weight="bold" fill="#DCC391">Crestline Law Partners</text>
+<text x="71" y="568" font-family="Georgia, 'Times New Roman', serif" font-size="26" letter-spacing="8" fill="#F3F1EC" opacity="0.8">EXPERIENCED LEGAL COUNSEL · TRUSTED REPRESENTATION</text>
+<rect x="70" y="500" width="380" height="4" fill="#B69258"/>
+</svg>
